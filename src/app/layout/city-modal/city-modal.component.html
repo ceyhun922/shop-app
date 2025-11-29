@@ -1,0 +1,17 @@
+<div class="overlay">
+  <div class="modal">
+    <div class="header">
+      <h2>Şəhərinizi seçin</h2>
+      <button class="close" (click)="close()">✕</button>
+    </div>
+
+    <div class="cities">
+      <div 
+        class="city" 
+        *ngFor="let c of cities"
+        (click)="select(c)">
+        {{ c }}
+      </div>
+    </div>
+  </div>
+</div>

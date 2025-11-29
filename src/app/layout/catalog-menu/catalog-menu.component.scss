@@ -1,0 +1,52 @@
+.catalog-menu {
+  position: absolute;
+  top: 120px;
+  left: 0;
+  width: 900px;
+  height: 450px;
+  display: flex;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+
+  .left-menu {
+    width: 40%;
+    border-right: 1px solid #eee;
+    padding: 20px 0;
+
+    .item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      cursor: pointer;
+
+      &:hover {
+        background: #f4f4f6;
+      }
+
+      .icon {
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .right-menu {
+    flex: 1;
+    padding: 20px;
+
+    .sub-item {
+      padding: 10px 0;
+      font-size: 15px;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+      cursor: pointer;
+
+      &:hover {
+        color: #7a00ff;
+      }
+    }
+  }
+}

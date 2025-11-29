@@ -1,0 +1,134 @@
+.menu-container {
+  width: 100%;
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 20px;
+  position: relative;
+}
+
+/* WRAPPER */
+.menu-wrapper {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  z-index: 20;
+}
+
+/* LEFT MENU */
+.menu-left {
+  width: 260px;
+  background: #fff;
+  border-radius: 14px;
+  padding: 10px 0;
+  max-height: 580px;
+  overflow-y: hidden;
+  transition: max-height .35s ease;
+  position: relative;
+  z-index: 10;
+}
+
+.menu-left.expanded {
+  max-height: 450px;
+  overflow-y: auto;
+}
+
+.cat {
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: .25s ease;
+
+  &:hover {
+    background: #f5f1ff;
+    color: #7a00ff;
+    transform: translateX(5px);
+  }
+}
+
+.cat.all {
+  font-weight: bold;
+  color: #7a00ff;
+
+  &:hover {
+    background: #ffe7f5;
+  }
+}
+
+/* ============================================================
+    🔥 HOVER BRIDGE – category → subcategory boşluğunu YOX EDİR
+   ============================================================ */
+.hover-bridge {
+  position: absolute;
+  left: 260px;       /* LEFT menu bitən yer */
+  top: 0;
+  width: 22px;       /* keçid körpüsü */
+  height: 100%;
+  z-index: 15;
+  background: transparent;
+  pointer-events: auto;
+}
+
+/* ============================================================
+    🔥 SUBCATEGORY PANEL
+   ============================================================ */
+.menu-right {
+  position: absolute;
+  top: var(--panel-top, 0);
+  left: 282px;       /* 260px + 22px bridge */
+  width: 260px;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(12px);
+  border-radius: 12px;
+  padding: 12px 0;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  animation: fadeSoft .28s ease;
+
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-10px);
+  transition: .25s ease;
+  z-index: 20;
+}
+
+.sub {
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  color: #333;
+  text-decoration: none;
+  transition: .25s ease;
+
+  &:hover {
+    background: rgba(255,0,130,0.12);
+    color: #7a00ff;
+    transform: translateX(5px);
+  }
+}
+
+/* ============================================================
+   🔥 HOVER LOGIC — Birmarket 1:1
+   ============================================================ */
+
+/* LEFT → BRIDGE → RIGHT zəncir kimi açılır */
+.menu-left:hover + .hover-bridge + .menu-right,
+.hover-bridge:hover + .menu-right,
+.menu-right:hover {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0);
+}
+
+/* Çıxıb gedəndə panel bağlanır */
+.menu-wrapper:not(:hover) .menu-right {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-10px);
+}
+
+@keyframes fadeSoft {
+  from { opacity: 0; transform: translateX(-12px); filter: blur(6px); }
+  to   { opacity: 1; transform: translateX(0); filter: blur(0); }
+}

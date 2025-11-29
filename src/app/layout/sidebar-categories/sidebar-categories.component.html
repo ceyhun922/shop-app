@@ -1,0 +1,37 @@
+<div class="menu-container">
+
+  <div class="menu-wrapper" [style.--panel-top.px]="panelTop">
+
+    <!-- LEFT MENU -->
+    <div class="menu-left" [class.expanded]="showAll">
+
+      <div class="cat" *ngFor="let c of visibleCategories" (mouseenter)="openCategory(c, $event)">
+        <span class="name">{{ c.name }}</span>
+        <span class="arr">›</span>
+      </div>
+
+      <div class="cat all" (click)="toggleAll()">
+        <span class="name bold">
+          {{ showAll ? "Daha az göstər" : "Bütün kateqoriyalar" }}
+        </span>
+        <span class="arr">{{ showAll ? "⌃" : "⌄" }}</span>
+      </div>
+
+    </div>
+
+    <!-- BRIDGE -->
+    <div class="hover-bridge"></div>
+
+    <!-- RIGHT SUBCATEGORY PANEL -->
+    <div class="menu-right" *ngIf="activeCategory">
+      <a class="sub" *ngFor="let s of subs" [routerLink]="['/products']"
+        [queryParams]="{ category: activeCategory.slug, sub: s.slug }">
+        {{ s.name }} ›
+      </a>
+
+
+    </div>
+
+  </div>
+
+</div>

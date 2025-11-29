@@ -1,0 +1,30 @@
+<div class="filter-panel">
+
+  <div class="filter-group"
+       *ngFor="let g of filterGroups">
+
+    <!-- Header (Accordion) -->
+    <div class="filter-header" (click)="toggle(g)">
+      <span>{{ g.title }}</span>
+      <i class="arrow" [class.open]="g.open">⌄</i>
+    </div>
+
+    <!-- Options -->
+    <div class="filter-content" *ngIf="g.open">
+
+      <div class="option" *ngFor="let opt of g.options">
+        <label>
+          <input type="checkbox" [(ngModel)]="opt.selected">
+          {{ opt.name }}
+        </label>
+      </div>
+
+    </div>
+
+  </div>
+
+  <button class="apply-btn" (click)="applyFilters()">
+    Filtrləri Tətbiq Et
+  </button>
+
+</div>

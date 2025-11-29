@@ -1,0 +1,67 @@
+<div class="section">
+
+  <!-- TITLE + SEE ALL -->
+  <div class="section-head">
+    <h2>Günün Endirimləri</h2>
+    <a class="see-all">Hamısını gör</a>
+  </div>
+
+  <!-- PRODUCT SLIDER -->
+  <div class="slider">
+    <div class="product-card" *ngFor="let p of products">
+
+      <!-- LABELS -->
+      <div class="labels">
+        <span class="label bf" *ngIf="p.label">{{ p.label }}</span>
+        <span class="label best" *ngIf="p.tag">{{ p.tag }}</span>
+      </div>
+
+      <!-- IMAGE -->
+      <div class="image">
+        <img [src]="p.img" alt="">
+        <button class="fav"><i class="fa-regular fa-heart"></i></button>
+      </div>
+
+      <!-- DISCOUNT -->
+      <span class="discount">-{{ p.discount }}%</span>
+
+      <!-- PRICES -->
+      <div class="price-block">
+        <span class="price">{{ p.price }} ₼</span>
+        <span class="old">{{ p.oldPrice }} ₼</span>
+      </div>
+
+      <div class="campaign">
+        Aksiya: <span>19:18:22</span>
+      </div>
+
+      <span class="installment">{{ p.installment }}</span>
+
+      <!-- TITLE -->
+      <p class="title">{{ p.title }}</p>
+
+      <!-- RATING -->
+      <div class="rating">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <span>{{ p.ratingCount }} rəy</span>
+      </div>
+
+      <!-- BUTTON -->
+      <button class="cart-btn">
+        <i class="fa-solid fa-cart-shopping"></i> Səbətə at
+      </button>
+
+    </div>
+  </div>
+
+  <!-- BOTTOM DOTS -->
+  <div class="dots">
+    <span class="dot active"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+  </div>
+
+</div>

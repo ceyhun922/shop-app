@@ -1,0 +1,19 @@
+<div class="catalog-menu" (mouseleave)="close()">
+  <div class="left-menu">
+    <div 
+      class="item"
+      *ngFor="let c of categories"
+      (mouseenter)="active = c">
+      <span class="icon">{{ c.icon }}</span>
+      <span class="text">{{ c.name }}</span>
+      <span class="arrow">›</span>
+    </div>
+  </div>
+
+  <div class="right-menu" *ngIf="active">
+    <div class="sub-item" *ngFor="let s of active.subs">
+      {{ s }}
+      <span>›</span>
+    </div>
+  </div>
+</div>

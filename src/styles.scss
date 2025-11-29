@@ -1,0 +1,54 @@
+/* You can add global styles to this file, and also import other style files */
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+:root {
+  /* PRIMARY BRAND COLORS */
+  --primary-light: #ff4fa6;   /* soft pink */
+  --primary: #d6007a;         /* deep magenta */
+  --primary-dark: #5a2d82;    /* deep purple */
+
+  /* SUPPORT COLORS */
+  --accent: #ff82c4;          /* pastel pink */
+  --danger: #ff008c;          /* pure magenta */
+  --success: #2ecc71;
+
+  /* TEXT COLORS */
+  --text-main: #222;
+  --text-light: #555;
+  --text-muted: #999;
+
+  /* BACKGROUNDS */
+  --bg-soft: #fff4fa;
+  --bg-light: #ffffff;
+  --bg-gray: #f7f7f7;
+
+  /* BORDERS */
+  --border-soft: #f1c2de;
+  --border-light: #eaeaea;
+
+  /* SHADOWS */
+  --shadow-soft: 0 6px 16px rgba(214, 0, 122, 0.12);
+  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.08);
+  --shadow-hover: 0 12px 30px rgba(90, 45, 130, 0.20);
+
+  /* GRADIENT */
+  --gradient-primary: linear-gradient(135deg, #ff4fa6, #d6007a, #5a2d82);
+}
+
+/* Universal reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Universal container */
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 24px;
+}

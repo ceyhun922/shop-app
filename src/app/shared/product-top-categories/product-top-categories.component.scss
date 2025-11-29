@@ -1,0 +1,21 @@
+.top-cat {
+  display: flex;
+  gap: 15px;
+  padding: 15px 0;
+  overflow-x: auto;
+
+  .item {
+    padding: 8px 14px;
+    border-radius: 20px;
+    background: #f7f7f7;
+    cursor: pointer;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    white-space: nowrap;
+
+    &:hover {
+      background: #e5e5e5;
+    }
+  }
+}

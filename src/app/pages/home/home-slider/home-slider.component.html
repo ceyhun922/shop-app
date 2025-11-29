@@ -1,0 +1,11 @@
+<div class="slider">
+  <img [src]="slides[current]" class="slide-img" />
+
+  <div class="dots">
+    <span 
+      *ngFor="let s of slides; let i = index"
+      [class.active]="i === current"
+      (click)="current = i">
+    </span>
+  </div>
+</div>
