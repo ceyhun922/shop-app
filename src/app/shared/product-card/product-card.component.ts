@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Product } from 'src/app/core/models/product';
 import { Router } from '@angular/router';
+import { Product } from 'src/app/core/models/product';
 
 @Component({
   selector: 'app-product-card',
@@ -12,74 +12,71 @@ export class ProductCardComponent {
   @Input() product!: Product;
 
   hoverIndex = 0;
+  isHovering = false;
 
   constructor(private router: Router) {}
 
-  // hover başlayanda
-  onHoverStart() {
-    if (!this.product.images || this.product.images.length === 0) return;
+  ngOnInit() {
     this.hoverIndex = 0;
-    this.startHoverLoop();
   }
 
-  // hover bitəndə sıfırlayırıq
-  onHoverEnd() {
-    this.hoverIndex = 0;
-    clearInterval(this.interval);
-  }
-
-  interval: any;
-
-  startHoverLoop() {
-    clearInterval(this.interval);
-
-    this.interval = setInterval(() => {
-      if (!this.product.images) return;
-
-      this.hoverIndex++;
-      if (this.hoverIndex >= this.product.images.length) {
-        this.hoverIndex = 0;
-      }
-    }, 700); // hər 700ms bir şəkil dəyişir
-  }
-
-  get displayImage() {
+  // ============================
+  //  AKTİV ŞƏKİL
+  // ============================
+  get currentImage() {
     if (this.product.images && this.product.images.length > 0) {
       return this.product.images[this.hoverIndex];
     }
-    return this.product.image;
+    return "";
   }
 
-  onMouseMove(event: MouseEvent) {
-    if (!this.product.images || this.product.images.length === 0) return;
-
-    const element = event.currentTarget as HTMLElement;
-    const rect = element.getBoundingClientRect();
-
-    const x = event.clientX - rect.left;  // mouse X
-    const width = rect.width;
-
-    const part = width / this.product.images.length;
-
-    // hansı hissədədirsə o şəkil
-    this.hoverIndex = Math.floor(x / part);
-
-    if (this.hoverIndex >= this.product.images.length) {
-      this.hoverIndex = this.product.images.length - 1;
+  // ============================
+  // HOVER START
+  // ============================
+  startHover() {
+    if (this.product.images && this.product.images.length > 1) {
+      this.isHovering = true;
     }
   }
 
-  onMouseLeave() {
+  // ============================
+  // HOVER END
+  // ============================
+  stopHover() {
+    this.isHovering = false;
     this.hoverIndex = 0;
   }
 
+  // ============================
+  // MOUSE MOVE → ŞƏKİL DƏYİŞ
+  // ============================
+  onMouseMove(event: MouseEvent) {
+    if (!this.isHovering) return;
+    if (!this.product.images) return;
+
+    const element = event.target as HTMLElement;
+    const width = element.clientWidth;
+    const x = event.offsetX;
+
+    const totalImgs = this.product.images.length;
+
+    const percent = x / width;
+    const index = Math.floor(percent * totalImgs);
+
+    this.hoverIndex = Math.min(totalImgs - 1, Math.max(0, index));
+  }
+
+  // ============================
   // FAVORITE
+  // ============================
   toggleFavorite(event: MouseEvent) {
     event.stopPropagation();
     this.product.isFavorite = !this.product.isFavorite;
   }
 
-
+  // ============================
+  // DETAIL PAGE
+  // ============================
   goToDetail() {
     this.router.navigate(['/product', this.product.id]);
   }

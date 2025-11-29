@@ -1,31 +1,43 @@
-<div class="t-card" (click)="goToDetail()">
+<div class="t-card"
+     (click)="goToDetail()"
+     (mouseenter)="startHover()"
+     (mouseleave)="stopHover()"
+>
 
+  <!-- FAVORITE BUTTON -->
   <button class="fav" (click)="toggleFavorite($event)">
     <i [class.active]="product.isFavorite">❤</i>
   </button>
 
-  <img *ngIf="product.badge" class="badge" [src]="product.badge" />
+  <!-- ŞƏKİL WRAPPER -->
+<div class="image-wrap"
+     (mouseenter)="startHover()"
+     (mouseleave)="stopHover()"
+     (mousemove)="onMouseMove($event)">
+  
+  <img [src]="currentImage" class="main-img" />
 
-  <div class="image-wrap">
-    <img [src]="product.image" />
-  </div>
+</div>
 
+
+  <!-- NAME -->
   <div class="title">{{ product.name }}</div>
 
+  <!-- VIEWS -->
   <div class="views">👀 24 saatda {{ product.views }} nəfər baxdı!</div>
 
+  <!-- RATING -->
   <div class="rating">
-    <span class="stars">⭐ {{ product.rating }}</span>
-    <span class="count">({{ product.ratingCount }})</span>
+    ⭐ {{ product.rating }} <span class="count">({{ product.ratingCount }})</span>
   </div>
 
+  <!-- AZ BADGE -->
   <div class="az-badge">🇦🇿 Azərbaycana Özəl Endirim</div>
 
+  <!-- PRICE -->
   <div class="price-box">
     <span class="discount">-{{ product.discount }}%</span>
-
     <span class="price">{{ product.price }} ₼</span>
-
     <span *ngIf="product.oldPrice" class="old-price">
       {{ product.oldPrice }} ₼
     </span>
