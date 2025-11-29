@@ -6,8 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
+  searchFocus: boolean = false;
 
-  selectedCity = 'Bakı';
   catalogVisible = false;
   cityVisible = false;
 

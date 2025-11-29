@@ -7,6 +7,7 @@ export interface Product {
   discount?: number;
 
   image: string;
+  images?: string[];
 
   categoryId: number;
   subCategoryId?: number;

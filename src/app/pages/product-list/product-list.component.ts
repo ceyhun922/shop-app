@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../../core/models/product';
 import { ProductService } from '../../core/services/product.service';
-import { CategoryService } from '../../core/services/category.service';
 import { SubCategoryService } from '../../core/services/subcategory.service';
+import { SortService } from 'src/app/core/services/sort.service';
+import { CategoryService } from 'src/app/core/services/category.service';
 
 @Component({
   selector: 'app-product-list',
@@ -15,94 +16,94 @@ export class ProductListComponent implements OnInit {
   products: Product[] = [];
   filteredProducts: Product[] = [];
 
-  selectedSort: string = "recommended";
+  searchValue: string = "";
 
   constructor(
     private ps: ProductService,
     private route: ActivatedRoute,
-    private catService: CategoryService,
-    private subService: SubCategoryService
+    private categoryService: CategoryService,
+    private subService: SubCategoryService,
+    private sortService: SortService
   ) {}
 
   ngOnInit(): void {
 
-    // bütün məhsullar
+    // 🔥 Bütün məhsullar
     this.products = this.ps.getAllProducts();
 
-    // QUERY PARAMLARI DİNAMİK OXU
+    // 🔥 QUERY PARAMLARI DİNLƏ
     this.route.queryParams.subscribe(params => {
 
-      const catId = Number(params['categoryId']);
-      const subId = Number(params['subId']);
-
-      const catSlug = params['category'];
-      const subSlug = params['sub'];
-
-      // default → bütün məhsullar
       let result = [...this.products];
 
-      // --------------------------
-      // 1️⃣ CATEGORY FILTER (ID və ya SLUG)
-      // --------------------------
-      if (catId) {
-        result = result.filter(p => p.categoryId === catId);
-      }
-      else if (catSlug) {
-        const cat = this.catService.getBySlug(catSlug);
-        if (cat) {
-          result = result.filter(p => p.categoryId === cat.id);
-        }
+      // ==============================
+      // 1) MULTI CATEGORY (categoryId=1,2,3)
+      // ==============================
+      if (params['categoryId']) {
+        const ids = params['categoryId']
+          .split(',')
+          .map((x: string) => Number(x));
+
+        result = result.filter(p => ids.includes(p.categoryId));
       }
 
-      // --------------------------
-      // 2️⃣ SUBCATEGORY FILTER (ID və ya SLUG)
-      // --------------------------
-      if (subId) {
-        result = result.filter(p => p.subCategoryId === subId);
-      }
-      else if (subSlug) {
-        const sub = this.subService.getAll().find(s => s.slug === subSlug);
-        if (sub) {
-          result = result.filter(p => p.subCategoryId === sub.id);
-        }
+      // ==============================
+      // 2) MULTI SUB CATEGORY (subId=5,7)
+      // ==============================
+      if (params['subId']) {
+        const subIds = params['subId']
+          .split(',')
+          .map((x: string) => Number(x));
+
+        result = result.filter(p => subIds.includes(p.subCategoryId));
       }
 
+      // ==============================
+      // 3) MULTI BRAND (brand=Apple,Samsung)
+      // ==============================
+      if (params['brand']) {
+        const brands = params['brand'].split(',').map((b: string) => b.toLowerCase());
+        result = result.filter(p => p.brand && brands.includes(p.brand.toLowerCase()));
+      }
+
+      // ==============================
+      // 4) PRICE RANGE (min=10&max=100)
+      // ==============================
+      if (params['min']) {
+        result = result.filter(p => p.price >= Number(params['min']));
+      }
+
+      if (params['max']) {
+        result = result.filter(p => p.price <= Number(params['max']));
+      }
+
+      // ==============================
+      // 5) SEARCH
+      // ==============================
+      const search = params["search"]?.toString().trim().toLowerCase() || "";
+      this.searchValue = search;
+
+      if (search.length > 0) {
+        result = result.filter(p =>
+          p.name.toLowerCase().includes(search) ||
+          (p.brand && p.brand.toLowerCase().includes(search))
+        );
+      }
+
+      // ==============================
+      // NƏTİCƏYİ TƏYİN ET
+      // ==============================
       this.filteredProducts = result;
-      console.log("Filtered:", result);
+
+      // ==============================
+      // SEARCH → HIGHLIGHT SCROLL
+      // ==============================
+      setTimeout(() => {
+        const el = document.querySelector(".search-highlight");
+        if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 200);
+
     });
 
   }
-
-  // --------------------------
-  // SORTING
-  // --------------------------
-  sortProducts() {
-    switch (this.selectedSort) {
-
-      case "low":
-        this.filteredProducts.sort((a, b) => a.price - b.price);
-        break;
-
-      case "high":
-        this.filteredProducts.sort((a, b) => b.price - a.price);
-        break;
-
-      case "new":
-        this.filteredProducts = this.filteredProducts.filter(p => p.isNew);
-        break;
-
-      case "top":
-        this.filteredProducts = this.filteredProducts.filter(p => p.isBestSeller);
-        break;
-
-      case "rated":
-        this.filteredProducts.sort((a, b) => b.ratingCount - a.ratingCount);
-        break;
-
-      default:
-        // recommended → əsas məhsullar siyahısı
-        this.filteredProducts = [...this.products];
-    }
-  }
-
 }

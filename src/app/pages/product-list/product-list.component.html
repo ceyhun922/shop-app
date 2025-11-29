@@ -1,25 +1,25 @@
 <div class="products-page">
 
-  <app-product-filter-sidebar class="left"></app-product-filter-sidebar>
+  <div class="left">
+    <app-product-filter-sidebar></app-product-filter-sidebar>
+  </div>
 
   <div class="right">
 
-    <app-product-top-categories></app-product-top-categories>
+    <!-- SORT BAR (səndə var idi) -->
+    <app-product-filter-sort-bar></app-product-filter-sort-bar>
 
-    <div class="sort-bar">
-      <select [(ngModel)]="selectedSort" (change)="sortProducts()">
-        <option value="default">Sırala</option>
-        <option value="price-asc">Ucuzdan bahaya</option>
-        <option value="price-desc">Bahadan ucuza</option>
-        <option value="rating-desc">Ən yüksək reytinq</option>
-      </select>
-    </div>
-
+    <!-- PRODUCT LIST -->
     <div class="products-grid">
+
       <app-product-card
         *ngFor="let p of filteredProducts"
-        [product]="p">
-      </app-product-card>
+        [product]="p"
+        [ngClass]="{
+          'search-highlight': searchValue && p.name.toLowerCase().includes(searchValue)
+        }"
+      ></app-product-card>
+
     </div>
 
   </div>

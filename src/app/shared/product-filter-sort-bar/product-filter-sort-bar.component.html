@@ -1,0 +1,7 @@
+<div class="sort-bar">
+  <select [(ngModel)]="selected" (change)="onChange()">
+    <option *ngFor="let s of sorts" [value]="s.key">
+      {{ s.label }}
+    </option>
+  </select>
+</div>

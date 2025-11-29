@@ -1,21 +1,26 @@
 <div class="filter-panel">
 
-  <div class="filter-group"
-       *ngFor="let g of filterGroups">
+  <!-- CATEGORY -->
+  <div class="filter-group">
 
-    <!-- Header (Accordion) -->
-    <div class="filter-header" (click)="toggle(g)">
-      <span>{{ g.title }}</span>
-      <i class="arrow" [class.open]="g.open">⌄</i>
+    <div class="filter-header" (click)="toggle('cat')">
+      <span>Kateqoriyalar</span>
+      <i class="arrow" [class.open]="openCat">⌄</i>
     </div>
 
-    <!-- Options -->
-    <div class="filter-content" *ngIf="g.open">
+    <div class="filter-content" *ngIf="openCat">
 
-      <div class="option" *ngFor="let opt of g.options">
+      <input class="search-box"
+             placeholder="Axtar..."
+             [(ngModel)]="catSearch"
+             (input)="filterCategories()" />
+
+      <div class="option" *ngFor="let c of filteredCategories">
         <label>
-          <input type="checkbox" [(ngModel)]="opt.selected">
-          {{ opt.name }}
+          <input type="checkbox"
+                 [(ngModel)]="c.selected"
+                 (change)="applyFilter()">
+          {{ c.name }}
         </label>
       </div>
 
@@ -23,8 +28,86 @@
 
   </div>
 
-  <button class="apply-btn" (click)="applyFilters()">
-    Filtrləri Tətbiq Et
-  </button>
+
+
+  <!-- SUBCATEGORIES -->
+  <div class="filter-group">
+
+    <div class="filter-header" (click)="toggle('sub')">
+      <span>Alt Kateqoriyalar</span>
+      <i class="arrow" [class.open]="openSub">⌄</i>
+    </div>
+
+    <div class="filter-content" *ngIf="openSub">
+
+      <input class="search-box"
+             placeholder="Axtar..."
+             [(ngModel)]="subSearch"
+             (input)="filterSubCategories()" />
+
+      <div class="option" *ngFor="let s of filteredSubCategories">
+        <label>
+          <input type="checkbox"
+                 [(ngModel)]="s.selected"
+                 (change)="applyFilter()">
+          {{ s.name }}
+        </label>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- PRICE -->
+  <div class="filter-group">
+
+    <!-- BUG olan yer → düzəldildi -->
+    <div class="filter-header" (click)="toggle('price')">
+      <span>Qiymət</span>
+      <i class="arrow" [class.open]="openPrice">⌄</i>
+    </div>
+
+    <div class="filter-content" *ngIf="openPrice">
+
+      <div class="price-inputs">
+
+        <input
+          type="number"
+          placeholder="Min"
+          [(ngModel)]="minPrice"
+          (input)="applyPriceFilter()"
+        />
+
+        <input
+          type="number"
+          placeholder="Max"
+          [(ngModel)]="maxPrice"
+          (input)="applyPriceFilter()"
+        />
+
+      </div>
+
+
+      <input
+        type="range"
+        min="0"
+        max="5000"
+        [(ngModel)]="minPrice"
+        (input)="applyPriceFilter()"
+      />
+
+      <input
+        type="range"
+        min="0"
+        max="5000"
+        [(ngModel)]="maxPrice"
+        (input)="applyPriceFilter()"
+      />
+
+    </div>
+
+  </div>
+
+  
 
 </div>

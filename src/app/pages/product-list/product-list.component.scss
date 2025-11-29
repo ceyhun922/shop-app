@@ -1,40 +1,16 @@
-.products-wrapper {
-  display: grid;
-  grid-template-columns: 260px 1fr 260px;
-  gap: 20px;
-  padding: 20px;
-}
-
-
 .products-page {
   display: flex;
+  gap: 20px;
   width: 100%;
-  max-width: 1500px;
-  margin: 0 auto;
   padding-top: 20px;
 }
 
 .left {
   width: 260px;
-  padding-right: 20px;
 }
 
 .right {
   flex: 1;
-}
-
-
-
-.left {
-  position: sticky;
-  top: 100px;
-  height: fit-content;
-}
-
-.center {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
 }
 
 .products-grid {
@@ -43,8 +19,8 @@
   gap: 20px;
 }
 
-.sort-bar select {
-  padding: 8px 12px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
+.search-highlight {
+  outline: 2px solid #8a2be2 !important;
+  border-radius: 10px;
+  transition: 0.2s;
 }

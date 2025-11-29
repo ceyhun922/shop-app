@@ -20,6 +20,15 @@
   gap: 20px;
 }
 
+.app-container {
+  max-width: 1320px;  // Trendyol 1240–1320px
+  margin: 0 auto;     // ortalanır
+  padding: 20px 16px; // sağ-sol boşluq
+  min-height: calc(100vh - 80px); // header çıxılsın
+  box-sizing: border-box;
+}
+
+
 /* Grid area təyinatları */
 .left   { grid-area: left; }
 .center { grid-area: center; }

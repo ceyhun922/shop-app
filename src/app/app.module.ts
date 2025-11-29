@@ -23,6 +23,8 @@ import { ProductCardComponent } from './shared/product-card/product-card.compone
 import { ProductListComponent } from './pages/product-list/product-list.component';
 import { ProductTopCategoriesComponent } from './shared/product-top-categories/product-top-categories.component';
 import { ProductFilterSidebarComponent } from './shared/product-filter-sidebar/product-filter-sidebar.component';
+import { ProductFilterSortBarComponent } from './shared/product-filter-sort-bar/product-filter-sort-bar.component';
+import { SearchComponent } from './layout/search/search.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { ProductFilterSidebarComponent } from './shared/product-filter-sidebar/p
 
     // ⭐ BUNU ƏLAVƏ ET
     ProductTopCategoriesComponent,
-     ProductFilterSidebarComponent
+     ProductFilterSidebarComponent,
+     ProductFilterSortBarComponent,
+     SearchComponent
   ],
   imports: [
     BrowserModule,

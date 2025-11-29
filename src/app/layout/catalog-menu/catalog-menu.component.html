@@ -1,19 +1,19 @@
-<div class="catalog-menu" (mouseleave)="close()">
-  <div class="left-menu">
-    <div 
-      class="item"
-      *ngFor="let c of categories"
-      (mouseenter)="active = c">
-      <span class="icon">{{ c.icon }}</span>
-      <span class="text">{{ c.name }}</span>
-      <span class="arrow">›</span>
-    </div>
+<div class="catalog-container" [class.open]="active">
+
+  <div class="catalog-header">
+    <span>📂 Kateqoriyalar</span>
+    <button (click)="close()">✖</button>
   </div>
 
-  <div class="right-menu" *ngIf="active">
-    <div class="sub-item" *ngFor="let s of active.subs">
-      {{ s }}
-      <span>›</span>
-    </div>
+  <div class="categories">
+    <a *ngFor="let c of categories"
+       [routerLink]="['/products']"
+       [queryParams]="{ cat: c.slug }">
+
+      <span class="icon">{{ c.icon }}</span>
+      <span class="name">{{ c.name }}</span>
+      <span class="arrow">›</span>
+    </a>
   </div>
+
 </div>

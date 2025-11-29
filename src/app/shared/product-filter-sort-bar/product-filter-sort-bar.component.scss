@@ -1,0 +1,51 @@
+.sort-bar {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin: 10px 0 20px 0;
+
+  select {
+    padding: 10px 16px;
+    font-size: 14px;
+
+    background: #fff;
+    border: 1px solid #e2e2e2;
+    border-radius: 10px;
+    outline: none;
+
+    color: #333;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+    appearance: none;
+
+    /* sağ tərəfə arrow */
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+
+    &:hover {
+      border-color: #c5c5c5;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    &:focus {
+      border-color: #ff4f8b;
+      box-shadow: 0 0 0 3px rgba(255, 79, 139, 0.25);
+    }
+  }
+}
+
+/* Mobile uyumlu */
+@media(max-width: 768px) {
+  .sort-bar {
+    justify-content: center;
+
+    select {
+      width: 100%;
+      max-width: 260px;
+    }
+  }
+}

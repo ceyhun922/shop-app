@@ -1,0 +1,117 @@
+<div class="search-container" (click)="keepOpen($event)">
+
+  <!-- SEARCH BOX -->
+  <div class="search-box">
+    <img src="assets/icons/search.svg"
+         class="search-icon"
+         (click)="triggerSearch(); keepOpen($event)"
+    />
+
+    <input
+      type="text"
+      placeholder="Aradığınız məhsulu yazın..."
+      [(ngModel)]="searchText"
+      (focus)="openPopup()"
+      (click)="keepOpen($event)"
+      (keyup.enter)="triggerSearch()"
+      (input)="onTyping()"
+    />
+
+    <img
+      *ngIf="searchText"
+      src="assets/icons/close.svg"
+      class="clear-icon"
+      (click)="clearInput(); keepOpen($event)"
+    />
+  </div>
+
+
+  <!-- POPUP -->
+  <div class="search-popup" *ngIf="popupOpen" (click)="keepOpen($event)">
+
+    <!-- SON AXTARIŞLAR -->
+    <div class="title">Son Axtarışlar</div>
+
+    <div class="recent-row" *ngIf="recentSearches.length > 0">
+      <div class="clear-all" (click)="clearAllRecent()">Hamısını sil</div>
+    </div>
+
+    <div class="recent-list" *ngIf="recentSearches.length > 0">
+      <div class="recent-item" *ngFor="let r of recentSearches; let i = index">
+        <span class="txt" (click)="applyRecent(r)">{{ r }}</span>
+        <span class="x" (click)="removeRecent(i)">×</span>
+      </div>
+    </div>
+
+
+    <!-- POPULYAR AXTARIŞLAR -->
+    <div class="title">Populyar Aramalar</div>
+    <div class="tags">
+      <span *ngFor="let t of popularTags" (click)="applyPopular(t)">
+        {{ t }}
+      </span>
+    </div>
+
+
+    <!-- CANLI SEARCH RESULTS -->
+    <div *ngIf="searchText" class="title">Axtarış nəticələri</div>
+
+  <div class="live-results" *ngIf="searchText">
+
+  <!-- CATEGORY RESULTS -->
+  <div class="cat-item"
+       *ngFor="let c of liveCategories"
+       (click)="goToCategory(c)">
+    📁 {{ c.name }}
+  </div>
+
+  <!-- BRAND RESULTS -->
+  <div class="brand-item"
+       *ngFor="let b of liveBrands"
+       (click)="goToBrand(b)">
+    🏷️ {{ b }}
+  </div>
+
+  <!-- PRODUCT RESULTS -->
+  <div class="product-item"
+       *ngFor="let p of liveProducts"
+       (mouseenter)="showPreview(p)"
+       (mouseleave)="hidePreview()"
+       (click)="goToProduct(p.id)">
+
+    <img [src]="p.image" />
+    <div class="pname">{{ p.name }}</div>
+  </div>
+
+  <!-- PRODUCT PREVIEW PANEL -->
+  <div class="preview-box" *ngIf="previewProduct">
+    <img [src]="previewProduct.image" />
+    <div class="pname">{{ previewProduct.name }}</div>
+    <div class="price">{{ previewProduct.price }} ₼</div>
+  </div>
+
+</div>
+
+
+
+    <!-- POPULAR PRODUCTS SLIDER -->
+    <div class="title">Populyar Məhsullar</div>
+
+    <div class="swiper popular-swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide" *ngFor="let p of popularProducts">
+          <div class="popular-card">
+            <img [src]="p.image" />
+            <div class="name">{{ p.name }}</div>
+            <div class="price">{{ p.price }} ₼</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="popular-prev swiper-btn">‹</div>
+      <div class="popular-next swiper-btn">›</div>
+    </div>
+
+  </div>
+
+</div>

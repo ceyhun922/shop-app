@@ -15,6 +15,12 @@ export class ProductService {
       id: 1,
       name: "iPhone 14 Pro Max 256GB",
       image: "assets/products/iphone14promax.png",
+      images: [
+        "assets/products/iphone14promax.png",
+        "assets/products/iphone12.png",
+        "assets/products/iPhone_15.webp",
+        "assets/products/iphone15pro.webp"
+      ],
       categoryId: 6,
       subCategoryId: 601,
       price: 3299,

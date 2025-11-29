@@ -1,52 +1,36 @@
-.catalog-menu {
-  position: absolute;
-  top: 120px;
-  left: 0;
-  width: 900px;
-  height: 450px;
-  display: flex;
+.catalog-container {
+  width: 260px;
   background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
-  z-index: 999;
-
-  .left-menu {
-    width: 40%;
-    border-right: 1px solid #eee;
-    padding: 20px 0;
-
-    .item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 20px;
-      cursor: pointer;
-
-      &:hover {
-        background: #f4f4f6;
-      }
-
-      .icon {
-        margin-right: 10px;
-      }
-    }
-  }
-
-  .right-menu {
-    flex: 1;
-    padding: 20px;
-
-    .sub-item {
-      padding: 10px 0;
-      font-size: 15px;
-      border-bottom: 1px solid #eee;
-      display: flex;
-      justify-content: space-between;
-      cursor: pointer;
-
-      &:hover {
-        color: #7a00ff;
-      }
-    }
-  }
+  border-radius: 12px;
+  padding: 16px;
+  display: none;
+  box-shadow: 0 12px 30px rgba(0,0,0,.08);
 }
+
+.catalog-container.open {
+  display: block;
+}
+
+.catalog-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.categories a {
+  display: flex;
+  align-items: center;
+  padding: 10px 6px;
+  border-radius: 8px;
+  color: #000;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.categories a:hover {
+  background: #f1f1f7;
+}
+
+.icon { width: 32px; text-align: center; }
+.arrow { margin-left: auto; opacity: .4; }

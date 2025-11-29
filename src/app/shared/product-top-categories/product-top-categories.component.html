@@ -1,5 +1,9 @@
 <div class="top-cat">
-  <div class="item" *ngFor="let c of categories">
+  <div class="item"
+       *ngFor="let c of categories"
+       [routerLink]="['/products']"
+       [queryParams]="{ categoryId: c.id }">
+       
     <span class="icon">{{ c.icon }}</span>
     <span class="text">{{ c.name }}</span>
   </div>
