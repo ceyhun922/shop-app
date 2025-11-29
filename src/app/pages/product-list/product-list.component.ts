@@ -26,84 +26,98 @@ export class ProductListComponent implements OnInit {
     private sortService: SortService
   ) {}
 
-  ngOnInit(): void {
+ngOnInit(): void {
 
-    // 🔥 Bütün məhsullar
-    this.products = this.ps.getAllProducts();
+  // 🔥 Bütün məhsullar
+  this.products = this.ps.getAllProducts();
 
-    // 🔥 QUERY PARAMLARI DİNLƏ
-    this.route.queryParams.subscribe(params => {
+  // 🔥 QUERY PARAMLARI DİNLƏ
+  this.route.queryParams.subscribe(params => {
 
-      let result = [...this.products];
+    let result = [...this.products];
 
-      // ==============================
-      // 1) MULTI CATEGORY (categoryId=1,2,3)
-      // ==============================
-      if (params['categoryId']) {
-        const ids = params['categoryId']
-          .split(',')
-          .map((x: string) => Number(x));
-
-        result = result.filter(p => ids.includes(p.categoryId));
+    // =====================================================
+    // 0) CATEGORY SLUG ( /products?category=komputerler )
+    // =====================================================
+    if (params["category"]) {
+      const cat = this.categoryService.getBySlug(params["category"]);
+      if (cat) {
+        result = result.filter(p => p.categoryId === cat.id);
       }
+    }
 
-      // ==============================
-      // 2) MULTI SUB CATEGORY (subId=5,7)
-      // ==============================
-      if (params['subId']) {
-        const subIds = params['subId']
-          .split(',')
-          .map((x: string) => Number(x));
-
-        result = result.filter(p => subIds.includes(p.subCategoryId));
+    // =====================================================
+    // 0.1) SUBCATEGORY SLUG ( /products?sub=laptops )
+    // =====================================================
+    if (params["sub"]) {
+      const sub = this.subService.getAll().find(s => s.slug === params["sub"]);
+      if (sub) {
+        result = result.filter(p => p.subCategoryId === sub.id);
       }
+    }
 
-      // ==============================
-      // 3) MULTI BRAND (brand=Apple,Samsung)
-      // ==============================
-      if (params['brand']) {
-        const brands = params['brand'].split(',').map((b: string) => b.toLowerCase());
-        result = result.filter(p => p.brand && brands.includes(p.brand.toLowerCase()));
-      }
+    // =====================================================
+    // 1) MULTI CATEGORY ( /products?categoryId=1,2,3 )
+    // =====================================================
+    if (params['categoryId']) {
+      const ids = params['categoryId']
+        .split(',')
+        .map((x: string) => Number(x));
 
-      // ==============================
-      // 4) PRICE RANGE (min=10&max=100)
-      // ==============================
-      if (params['min']) {
-        result = result.filter(p => p.price >= Number(params['min']));
-      }
+      result = result.filter(p => ids.includes(p.categoryId));
+    }
 
-      if (params['max']) {
-        result = result.filter(p => p.price <= Number(params['max']));
-      }
+    // =====================================================
+    // 2) MULTI SUBCATEGORY ( /products?subId=5,7 )
+    // =====================================================
+    if (params['subId']) {
+      const subIds = params['subId']
+        .split(',')
+        .map((x: string) => Number(x));
 
-      // ==============================
-      // 5) SEARCH
-      // ==============================
-      const search = params["search"]?.toString().trim().toLowerCase() || "";
-      this.searchValue = search;
+      result = result.filter(p => subIds.includes(p.subCategoryId));
+    }
 
-      if (search.length > 0) {
-        result = result.filter(p =>
-          p.name.toLowerCase().includes(search) ||
-          (p.brand && p.brand.toLowerCase().includes(search))
-        );
-      }
+    // =====================================================
+    // 3) BRAND ( /products?brand=Apple,Samsung )
+    // =====================================================
+    if (params['brand']) {
+      const brands = params['brand'].split(',').map((b: string) => b.toLowerCase());
+      result = result.filter(p => p.brand && brands.includes(p.brand.toLowerCase()));
+    }
 
-      // ==============================
-      // NƏTİCƏYİ TƏYİN ET
-      // ==============================
-      this.filteredProducts = result;
+    // =====================================================
+    // 4) PRICE RANGE (min & max)
+    // =====================================================
+    if (params['min']) result = result.filter(p => p.price >= Number(params['min']));
+    if (params['max']) result = result.filter(p => p.price <= Number(params['max']));
 
-      // ==============================
-      // SEARCH → HIGHLIGHT SCROLL
-      // ==============================
-      setTimeout(() => {
-        const el = document.querySelector(".search-highlight");
-        if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
-      }, 200);
+    // =====================================================
+    // 5) SEARCH
+    // =====================================================
+    const search = params["search"]?.toString().trim().toLowerCase() || "";
+    this.searchValue = search;
 
-    });
+    if (search.length > 0) {
+      result = result.filter(p =>
+        p.name.toLowerCase().includes(search) ||
+        (p.brand && p.brand.toLowerCase().includes(search))
+      );
+    }
 
-  }
+    // =====================================================
+    // NƏTİCƏ
+    // =====================================================
+    this.filteredProducts = result;
+
+    // SEARCH → HIGHLIGHT SCROLL
+    setTimeout(() => {
+      const el = document.querySelector(".search-highlight");
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, 200);
+
+  });
+
+}
+
 }

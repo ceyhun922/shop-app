@@ -40,7 +40,7 @@ export class ProductCardComponent {
       if (this.hoverIndex >= this.product.images.length) {
         this.hoverIndex = 0;
       }
-    }, 600); // hər 800ms bir şəkil dəyişir
+    }, 700); // hər 700ms bir şəkil dəyişir
   }
 
   get displayImage() {
@@ -50,10 +50,35 @@ export class ProductCardComponent {
     return this.product.image;
   }
 
+  onMouseMove(event: MouseEvent) {
+    if (!this.product.images || this.product.images.length === 0) return;
+
+    const element = event.currentTarget as HTMLElement;
+    const rect = element.getBoundingClientRect();
+
+    const x = event.clientX - rect.left;  // mouse X
+    const width = rect.width;
+
+    const part = width / this.product.images.length;
+
+    // hansı hissədədirsə o şəkil
+    this.hoverIndex = Math.floor(x / part);
+
+    if (this.hoverIndex >= this.product.images.length) {
+      this.hoverIndex = this.product.images.length - 1;
+    }
+  }
+
+  onMouseLeave() {
+    this.hoverIndex = 0;
+  }
+
+  // FAVORITE
   toggleFavorite(event: MouseEvent) {
     event.stopPropagation();
     this.product.isFavorite = !this.product.isFavorite;
   }
+
 
   goToDetail() {
     this.router.navigate(['/product', this.product.id]);
