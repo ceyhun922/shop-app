@@ -16,67 +16,47 @@ export class ProductCardComponent {
 
   constructor(private router: Router) {}
 
-  ngOnInit() {
-    this.hoverIndex = 0;
+  // ALWAYS SAFE IMAGES
+  get safeImages(): string[] {
+    return this.product.images ?? [];
   }
 
-  // ============================
-  //  AKTİV ŞƏKİL
-  // ============================
-  get currentImage() {
-    if (this.product.images && this.product.images.length > 0) {
-      return this.product.images[this.hoverIndex];
-    }
-    return "";
-  }
-
-  // ============================
-  // HOVER START
-  // ============================
   startHover() {
-    if (this.product.images && this.product.images.length > 1) {
+    if (this.safeImages.length > 1) {
       this.isHovering = true;
     }
   }
 
-  // ============================
-  // HOVER END
-  // ============================
   stopHover() {
     this.isHovering = false;
     this.hoverIndex = 0;
   }
 
-  // ============================
-  // MOUSE MOVE → ŞƏKİL DƏYİŞ
-  // ============================
   onMouseMove(event: MouseEvent) {
-    if (!this.isHovering) return;
-    if (!this.product.images) return;
+    if (!this.isHovering || this.safeImages.length <= 1) return;
 
-    const element = event.target as HTMLElement;
-    const width = element.clientWidth;
+    const wrap = (event.currentTarget as HTMLElement)
+      .querySelector('.image-wrap') as HTMLElement;
+    if (!wrap) return;
+
+    const width = wrap.clientWidth;
     const x = event.offsetX;
 
-    const totalImgs = this.product.images.length;
+    const count = this.safeImages.length;
+    const index = Math.floor((x / width) * count);
 
-    const percent = x / width;
-    const index = Math.floor(percent * totalImgs);
-
-    this.hoverIndex = Math.min(totalImgs - 1, Math.max(0, index));
+    this.hoverIndex = Math.max(0, Math.min(count - 1, index));
   }
 
-  // ============================
-  // FAVORITE
-  // ============================
+  hoverDot(i: number) {
+    this.hoverIndex = i;
+  }
+
   toggleFavorite(event: MouseEvent) {
     event.stopPropagation();
     this.product.isFavorite = !this.product.isFavorite;
   }
 
-  // ============================
-  // DETAIL PAGE
-  // ============================
   goToDetail() {
     this.router.navigate(['/product', this.product.id]);
   }

@@ -25,9 +25,9 @@ private products: Product[] = [
     badge: "⭐ Bestseller",
     isBestSeller: true,
     images: [
-     "assets/products/iphone14promax3.png",
       "assets/products/iphone12.png",
-      "assets/products/iphone15pro.webp"
+      "assets/products/iphone15pro.webp",
+      "assets/products/iphone12.png"
     ],
     categoryId: 1,
     subCategoryId: 101,

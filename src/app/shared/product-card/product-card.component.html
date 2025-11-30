@@ -1,26 +1,39 @@
 <div class="t-card"
-     (click)="goToDetail()"
      (mouseenter)="startHover()"
-     (mouseleave)="stopHover()"
->
+     (mousemove)="onMouseMove($event)"
+     (mouseleave)="stopHover()">
 
   <!-- FAVORITE BUTTON -->
   <button class="fav" (click)="toggleFavorite($event)">
     <i [class.active]="product.isFavorite">❤</i>
   </button>
 
-  <!-- ŞƏKİL WRAPPER -->
-<div class="image-wrap"
-     (mouseenter)="startHover()"
-     (mouseleave)="stopHover()"
-     (mousemove)="onMouseMove($event)">
-  
-  <img [src]="currentImage" class="main-img" />
+  <!-- BADGE -->
+  <img *ngIf="product.badge" class="badge" [src]="product.badge" />
 
-</div>
+  <!-- IMAGE WRAPPER -->
+  <div class="image-wrap">
 
+    <!-- Images -->
+    <img
+      *ngFor="let img of safeImages; let i = index"
+      [src]="img"
+      class="main-img"
+      [class.active]="i === hoverIndex"
+    />
 
-  <!-- NAME -->
+  </div>
+
+  <!-- DOTS -->
+  <div class="dots" *ngIf="safeImages.length > 1">
+    <span
+      *ngFor="let img of safeImages; let i = index"
+      [class.active]="i === hoverIndex"
+      (mouseenter)="hoverDot(i)">
+    </span>
+  </div>
+
+  <!-- TITLE -->
   <div class="title">{{ product.name }}</div>
 
   <!-- VIEWS -->
@@ -28,19 +41,18 @@
 
   <!-- RATING -->
   <div class="rating">
-    ⭐ {{ product.rating }} <span class="count">({{ product.ratingCount }})</span>
+    <span class="stars">⭐ {{ product.rating }}</span>
+    <span class="count">({{ product.ratingCount }})</span>
   </div>
 
   <!-- AZ BADGE -->
   <div class="az-badge">🇦🇿 Azərbaycana Özəl Endirim</div>
 
-  <!-- PRICE -->
+  <!-- PRICE BOX -->
   <div class="price-box">
     <span class="discount">-{{ product.discount }}%</span>
     <span class="price">{{ product.price }} ₼</span>
-    <span *ngIf="product.oldPrice" class="old-price">
-      {{ product.oldPrice }} ₼
-    </span>
+    <span *ngIf="product.oldPrice" class="old-price">{{ product.oldPrice }} ₼</span>
   </div>
 
 </div>

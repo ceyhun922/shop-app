@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoryService } from 'src/app/core/services/category.service';
 import { Category } from 'src/app/core/models/category';
+import { CategoryService } from 'src/app/core/services/category.service';
 
 @Component({
   selector: 'app-catalog-menu',
@@ -12,10 +12,10 @@ export class CatalogMenuComponent implements OnInit {
   categories: Category[] = [];
   active = false;
 
-  constructor(private catService: CategoryService) {}
+  constructor(private categoryService: CategoryService) {}
 
   ngOnInit(): void {
-    this.categories = this.catService.getAll();
+    this.categories = this.categoryService.getAll();
   }
 
   open() {
