@@ -1,4 +1,6 @@
+
 <div class="t-card"
+     (click)="goToDetail()"
      (mouseenter)="startHover()"
      (mousemove)="onMouseMove($event)"
      (mouseleave)="stopHover()">
@@ -13,15 +15,12 @@
 
   <!-- IMAGE WRAPPER -->
   <div class="image-wrap">
-
-    <!-- Images -->
     <img
-      *ngFor="let img of safeImages; let i = index"
+      *ngFor="let img of product.images; let i = index"
       [src]="img"
       class="main-img"
       [class.active]="i === hoverIndex"
     />
-
   </div>
 
   <!-- DOTS -->

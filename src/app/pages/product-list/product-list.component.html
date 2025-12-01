@@ -5,9 +5,12 @@
   </div>
 
   <div class="right">
+    <app-product-filter-sort-bar
+    (sortChanged)="onSort($event)">
+</app-product-filter-sort-bar>
 
     <!-- SORT BAR (səndə var idi) -->
-    <app-product-filter-sort-bar></app-product-filter-sort-bar>
+    <app-product-top-categories></app-product-top-categories>
 
     <!-- PRODUCT LIST -->
     <div class="products-grid">

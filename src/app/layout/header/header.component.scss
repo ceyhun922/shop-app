@@ -1,137 +1,49 @@
-.container {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 20px;
+.app-header {
+  position: fixed;              /* ⭐ Yuxarıda sabit */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+
+  background: rgba(255, 255, 255, 0.85);  /* Premium blur background */
+  backdrop-filter: blur(12px);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+
+  z-index: 9999;
 }
 
-/* MAIN BAR */
-.main-bar {
+.header-inner {
+  max-width: 1450px;
+  margin: auto;
+
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
+
+  padding: 0 25px;
 }
 
-app-search {
-  flex: 1;
-  display: block;
+.logo img {
+  height: 55px;
+  object-fit: contain;
 }
 
-
-
-/* LOGO */
-.logo {
-  display: flex;
-  align-items: center;
-}
-
-/* CATALOG BUTTON */
-.catalog button {
-  background: #7a00ff;
-  color: white;
-  border: none;
-  padding: 10px 16px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: 0.2s;
-}
-.catalog button:hover {
-  background: #8c1cff;
-}
-
-/* SEARCH */
-.search {
-  position: relative;
-  display: flex;
+/* SEARCH genişliyi */
+.search-wrapper {
   flex: 1;
   max-width: 600px;
+  margin: 0 30px;
 }
 
-.search input {
-  flex: 1;
-  padding: 10px 14px;
-  border: 2px solid #7a00ff;
-  border-right: none;
-  border-radius: 6px 0 0 6px;
-  outline: none;
-}
-
-.search input:focus {
-  border-color: #9a33ff;
-}
-
-.search button {
-  background: #7a00ff;
-  color: white;
-  border: none;
-  padding: 10px 18px;
-  border-radius: 0 6px 6px 0;
-  cursor: pointer;
-  transition: 0.2s;
-}
-.search button:hover {
-  background: #8c1cff;
-}
-
-/* POPUP */
-.search-popup {
-  position: absolute;
-  top: 48px;
-  left: 0;
-  width: 100%;
-  background: white;
-  border: 2px solid #7a00ff;
-  border-radius: 6px;
-  padding: 15px;
-  box-shadow: 0px 4px 12px rgba(0,0,0,0.15);
-  z-index: 20;
-}
-
-.search-popup h4 {
-  color: #7a00ff;
-  margin-bottom: 8px;
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.search-popup ul {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 15px 0;
-}
-
-.search-popup ul li {
-  padding: 6px 0;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.search-popup ul li:hover {
-  color: #7a00ff;
-}
-
-/* VIEW ALL */
-.view-all {
-  cursor: pointer;
-  color: #7a00ff;
-  font-weight: 600;
-}
-.view-all:hover {
-  color: #9a33ff;
-}
-
-/* ICONS */
-.icons {
+/* NAV */
+.nav-links {
   display: flex;
-  gap: 18px;
-}
+  gap: 20px;
+  font-size: 15px;
 
-.icon {
-  font-size: 20px;
-  cursor: pointer;
-  color: #7a00ff;
-  transition: 0.2s;
-}
-.icon:hover {
-  color: #9a33ff;
+  a {
+    color: #333;
+    text-decoration: none;
+  }
 }

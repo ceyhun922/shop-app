@@ -26,4 +26,5 @@ export interface Product {
   isNew?: boolean;
 
   isFavorite?: boolean;
+  description?: string; 
 }

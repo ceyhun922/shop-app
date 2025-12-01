@@ -7,40 +7,30 @@ import { SubCategory } from "../models/subcategory";
 export class SubCategoryService {
 
 private subs: SubCategory[] = [
-  // 1 — TELEFONLAR
-  { id: 101, name: "iPhone", slug: "iphone", categoryId: 1 },
-  { id: 102, name: "Samsung", slug: "samsung", categoryId: 1 },
-  { id: 103, name: "Xiaomi", slug: "xiaomi", categoryId: 1 },
-  { id: 104, name: "Huawei", slug: "huawei", categoryId: 1 },
-  { id: 105, name: "Realme", slug: "realme", categoryId: 1 },
+  // Elektronika
+  { id: 1, name: "Smartfonlar", slug: "smartfonlar", categoryId: 1 },
+  { id: 2, name: "Noutbuklar", slug: "noutbuklar", categoryId: 1 },
+  { id: 3, name: "Televizorlar", slug: "televizorlar", categoryId: 1 },
 
-  // 2 — KOMPÜTERLƏR
-  { id: 201, name: "Notbuklar", slug: "laptops", categoryId: 2 },
-  { id: 202, name: "Masaüstü PC", slug: "desktops", categoryId: 2 },
-  { id: 203, name: "Monitorlar", slug: "monitors", categoryId: 2 },
-  { id: 204, name: "Gaming PC", slug: "gaming-pc", categoryId: 2 },
-  { id: 205, name: "PC aksessuarları", slug: "pc-accessories", categoryId: 2 },
+  // Ev & Yaşam
+  { id: 4, name: "Mətbəx", slug: "metbex", categoryId: 2 },
+  { id: 5, name: "Mebel", slug: "mebel", categoryId: 2 },
+  { id: 6, name: "Dekor", slug: "dekor", categoryId: 2 },
 
-  // 3 — MƏİŞƏT TEXNIKASI
-  { id: 301, name: "Mətbəx texnikası", slug: "kitchen", categoryId: 3 },
-  { id: 302, name: "Ev təmizliyi", slug: "cleaning", categoryId: 3 },
-  { id: 303, name: "İsitmə & Soyutma", slug: "climate", categoryId: 3 },
-  { id: 304, name: "Paltaryuyan", slug: "washing", categoryId: 3 },
-  { id: 305, name: "Qabyuyan", slug: "dishwasher", categoryId: 3 },
+  // Gözəllik & Baxım
+  { id: 7, name: "Parfüm", slug: "parfum", categoryId: 3 },
+  { id: 8, name: "Makiyaj", slug: "makiyaj", categoryId: 3 },
+  { id: 9, name: "Dəri Baxımı", slug: "deri-baximi", categoryId: 3 },
 
-  // 4 — GEYIM
-  { id: 401, name: "Kişi geyimləri", slug: "men", categoryId: 4 },
-  { id: 402, name: "Qadın geyimləri", slug: "women", categoryId: 4 },
-  { id: 403, name: "Uşaq geyimləri", slug: "kids", categoryId: 4 },
-  { id: 404, name: "Ayaqqabılar", slug: "shoes", categoryId: 4 },
-  { id: 405, name: "Aksesuarlar", slug: "fashion-accessories", categoryId: 4 },
+  // Moda
+  { id: 10, name: "Kişi Geyim", slug: "kisi-geyim", categoryId: 4 },
+  { id: 11, name: "Qadın Geyim", slug: "qadin-geyim", categoryId: 4 },
+  { id: 12, name: "Ayaqqabılar", slug: "ayaqqabilar", categoryId: 4 },
 
-  // 5 — AKSESUARLAR
-  { id: 501, name: "Qulaqlıqlar", slug: "headphones", categoryId: 5 },
-  { id: 502, name: "Powerbank", slug: "powerbank", categoryId: 5 },
-  { id: 503, name: "Smart saatlar", slug: "smartwatch", categoryId: 5 },
-  { id: 504, name: "Telefon aksesuarları", slug: "phone-accessories", categoryId: 5 },
-  { id: 505, name: "Kabel & Adapterlər", slug: "cables", categoryId: 5 }
+  // Bağ & Alətlər
+  { id: 13, name: "Elektrik Alətləri", slug: "elektrik-aletleri", categoryId: 5 },
+  { id: 14, name: "Bağ Avadanlıqları", slug: "bag-avadanliqlari", categoryId: 5 },
+  { id: 15, name: "Mühəndislik Alətləri", slug: "muhendislik-aletleri", categoryId: 5 }
 ];
 
 

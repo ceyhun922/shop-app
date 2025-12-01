@@ -1,0 +1,50 @@
+<div class="detail-container" *ngIf="product && product.images?.length">
+
+  <!-- LEFT THUMBS -->
+  <div class="thumbs">
+    <img
+      *ngFor="let img of product.images; let i = index"
+      [src]="img"
+      [class.active]="i === activeIndex"
+      (mouseenter)="setActive(i)"
+    />
+  </div>
+
+  <!-- MAIN VIEW -->
+  <div class="main-view"
+       (mousemove)="onZoom($event)"
+       (mouseleave)="stopZoom()">
+
+    <img class="main-img"
+         [src]="product?.images?.[activeIndex]" />
+
+    <div class="zoom-lens"
+         *ngIf="zoomActive"
+         [ngStyle]="{
+           top: lensY + 'px',
+           left: lensX + 'px'
+         }"></div>
+  </div>
+
+  <!-- RIGHT INFO -->
+  <div class="info-box">
+    <h1>{{ product?.name }}</h1>
+    <div>⭐ {{ product?.rating }} ({{ product?.ratingCount }})</div>
+
+    <div class="price-area">
+      <span class="price">{{ product?.price }} ₼</span>
+      <span class="old-price" *ngIf="product?.oldPrice">{{ product?.oldPrice }} ₼</span>
+      <span class="discount" *ngIf="product?.discount">-{{ product?.discount }}%</span>
+    </div>
+
+    <!-- ⭐ ZOOM BOX INFO-BOX ALTINDA -->
+    <div class="zoom-box" *ngIf="zoomActive">
+      <img
+        [src]="product?.images?.[activeIndex]"
+        [style.transform]="'scale(2.6)'"
+        [style.transformOrigin]="zoomOrigin" />
+    </div>
+
+  </div>
+
+</div>

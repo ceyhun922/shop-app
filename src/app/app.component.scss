@@ -39,3 +39,9 @@
 .home-info {
   width: 100%;
 }
+
+
+:host {
+  display: block;
+  padding-top: 80px; /* Header hündürlüyü qədər */
+}

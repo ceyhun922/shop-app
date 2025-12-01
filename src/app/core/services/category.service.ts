@@ -7,11 +7,11 @@ import { Category } from '../models/category';
 export class CategoryService {
 
 private categories: Category[] = [
-  { id: 1, name: "Telefonlar", icon: "📱", slug: "telefonlar" },
-  { id: 2, name: "Kompyuterlər", icon: "💻", slug: "komputerler" },
-  { id: 3, name: "Məişət texnikası", icon: "🔌", slug: "meiset" },
-  { id: 4, name: "Geyim", icon: "👕", slug: "geyim" },
-  { id: 5, name: "Aksesuarlar", icon: "🎧", slug: "aksesuar" }
+  { id: 1, name: "Elektronika", slug: "elektronika", icon: "⚡" },
+  { id: 2, name: "Ev & Yaşam", slug: "ev-yasam", icon: "🏡" },
+  { id: 3, name: "Gözəllik & Baxım", slug: "gozellik-baxim", icon: "💄" },
+  { id: 4, name: "Moda", slug: "moda", icon: "👗" },
+  { id: 5, name: "Bağ & Alətlər", slug: "bag-aletler", icon: "🛠" }
 ];
 
 

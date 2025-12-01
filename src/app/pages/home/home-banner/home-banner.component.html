@@ -1,0 +1,32 @@
+<div class="banner-container">
+
+  <!-- LEFT ARROW -->
+  <button class="nav left" (click)="prev()">
+    ‹
+  </button>
+
+  <!-- SLIDER WRAPPER -->
+  <div class="slider">
+    <img
+      *ngFor="let b of banners; let i = index"
+      [src]="b"
+      class="slide-img"
+      [class.active]="i === current"
+    />
+  </div>
+
+  <!-- RIGHT ARROW -->
+  <button class="nav right" (click)="next()">
+    ›
+  </button>
+
+  <!-- DOTS -->
+  <div class="dots">
+    <span
+      *ngFor="let b of banners; let i = index"
+      [class.active]="i === current"
+      (click)="goTo(i)">
+    </span>
+  </div>
+
+</div>

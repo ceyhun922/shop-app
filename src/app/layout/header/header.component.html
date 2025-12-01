@@ -1,51 +1,20 @@
-<div class="container">
-  <header class="header">
-  
-    <div class="main-bar">
-      <div class="logo">
-        <img src="assets/logo.svg" alt="logo">
-      </div>
+<header class="app-header">
 
-      <div class="catalog">
-        <button (mouseenter)="showCatalog()" (mouseleave)="hideCatalog()">
-          Məhsul kataloqu <span class="arrow">▾</span>
-        </button>
-      </div>
+  <div class="header-inner">
 
-      <app-search></app-search>
-
-      <div class="icons">
-        <div class="icon">♡</div>
-        <div class="icon">🛒</div>
-      </div>
+    <div class="logo">
+      <img src="assets/logo.png" alt="Logo">
     </div>
 
-  </header>
-</div>
+    <div class="search-wrapper">
+      <app-search></app-search>
+    </div>
+     <nav class="nav-links">
+      <!-- Menü itemləri -->
+      <a routerLink="/">Giriş Et</a>
+      <a routerLink="/products">Sevimlilər</a>
+      <a routerLink="/contact">Səbətim</a>
+    </nav>
+  </div>
 
-
-
-
-<!--    <app-city-modal *ngIf="cityVisible"></app-city-modal>
- -->
-
-<!--     <app-catalog-menu *ngIf="catalogVisible"></app-catalog-menu> --> 
-
-<!-- 
-<div class="city-select" (click)="toggleCity()">
-          Şəhər: <span class="value">{{ selectedCity }}</span>
-        </div>
-<div class="top-bar">
-      <div class="left">
-        <a href="#">Çatdırılma və ödəme</a>
-        <a href="#">Qaytarılma</a>
-        <a href="#">Zəmanət</a>
-        <button class="buy-btn">Birmarket-də satın</button>
-      </div>
-
-      <div class="right">
-        <span class="phone">📞 915</span>
-        <span class="flag">🇦🇿</span>
-        <a href="#">Qeydiyyat | Giriş</a>
-      </div>
-    </div> -->
+</header>

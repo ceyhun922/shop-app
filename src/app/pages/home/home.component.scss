@@ -1,7 +1,89 @@
+/* ===============================
+   BANNER (mərkəzdə geniş)
+=============================== */
+app-home-banner {
+  display: block;
+  max-width: 1450px;
+  width: 100%;
+  margin: 0 auto 25px auto;
+}
+
+
+/* ===============================
+   ANA HOME WRAPPER
+=============================== */
 .home-wrapper {
-  display: grid;
-  grid-template-columns: 260px 1fr 300px;
+  max-width: 1450px;
+  margin: auto;
+
+  display: flex;
+  flex-direction: row;     /* ⭐ YAN-YANA */
+  align-items: flex-start;
+  gap: 25px;
+
+  padding-bottom: 120px;   /* alt boşluq */
+  padding-top: 10px;       /* header altı rahat olsun */
+}
+
+
+/* ===============================
+   SOL PANEL (STICKY SIDEBAR)
+=============================== */
+.left {
+  width: 250px;
+  flex-shrink: 0;
+
+  position: sticky;
+  top: 100px;              /* ⭐ header + boşluq */
+  z-index: 50;
+}
+
+
+/* ===============================
+   SAĞ PANEL (STICKY BANNERS)
+=============================== */
+.right {
+  width: 250px;
+  flex-shrink: 0;
+
+  position: sticky;
+  top: 100px;
+  z-index: 45;
+}
+
+
+/* ===============================
+   ORTA PANEL (MAIN SLIDER)
+=============================== */
+.center {
+  flex: 1;
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
   gap: 20px;
-  margin-top: 20px;
-  align-items: start;
+}
+
+
+/* ===============================
+   RESPONSIVE DƏSTƏK
+=============================== */
+@media (max-width: 1200px) {
+  .left,
+  .right {
+    width: 200px;
+  }
+}
+
+@media (max-width: 992px) {
+  .home-wrapper {
+    flex-direction: column;
+  }
+
+  .left,
+  .right {
+    position: relative;
+    width: 100%;
+    top: 0;
+  }
 }

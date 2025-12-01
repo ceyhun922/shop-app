@@ -58,10 +58,41 @@
 
   </div>
 
+
+
+  <!-- BRAND FILTER ⭐⭐ (YENİ ƏLAVƏ EDİLDİ) -->
+  <div class="filter-group">
+
+    <div class="filter-header" (click)="toggle('brand')">
+      <span>Brend</span>
+      <i class="arrow" [class.open]="openBrand">⌄</i>
+    </div>
+
+    <div class="filter-content" *ngIf="openBrand">
+
+      <input class="search-box"
+             placeholder="Brend axtar..."
+             [(ngModel)]="brandSearch"
+             (input)="filterBrands()" />
+
+      <div class="option" *ngFor="let b of filteredBrands">
+        <label>
+          <input type="checkbox"
+                 [(ngModel)]="b.selected"
+                 (change)="applyFilter()">
+          {{ b.name }}
+        </label>
+      </div>
+
+    </div>
+
+  </div>
+
+
+
   <!-- PRICE -->
   <div class="filter-group">
 
-    <!-- BUG olan yer → düzəldildi -->
     <div class="filter-header" (click)="toggle('price')">
       <span>Qiymət</span>
       <i class="arrow" [class.open]="openPrice">⌄</i>
@@ -71,43 +102,32 @@
 
       <div class="price-inputs">
 
-        <input
-          type="number"
-          placeholder="Min"
-          [(ngModel)]="minPrice"
-          (input)="applyPriceFilter()"
-        />
+        <input type="number"
+               placeholder="Min"
+               [(ngModel)]="minPrice"
+               (input)="applyPriceFilter()" />
 
-        <input
-          type="number"
-          placeholder="Max"
-          [(ngModel)]="maxPrice"
-          (input)="applyPriceFilter()"
-        />
+        <input type="number"
+               placeholder="Max"
+               [(ngModel)]="maxPrice"
+               (input)="applyPriceFilter()" />
 
       </div>
 
+      <input type="range"
+             min="0"
+             max="5000"
+             [(ngModel)]="minPrice"
+             (input)="applyPriceFilter()" />
 
-      <input
-        type="range"
-        min="0"
-        max="5000"
-        [(ngModel)]="minPrice"
-        (input)="applyPriceFilter()"
-      />
-
-      <input
-        type="range"
-        min="0"
-        max="5000"
-        [(ngModel)]="maxPrice"
-        (input)="applyPriceFilter()"
-      />
+      <input type="range"
+             min="0"
+             max="5000"
+             [(ngModel)]="maxPrice"
+             (input)="applyPriceFilter()" />
 
     </div>
 
   </div>
-
-  
 
 </div>

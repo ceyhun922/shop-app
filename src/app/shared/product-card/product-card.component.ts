@@ -58,6 +58,8 @@ export class ProductCardComponent {
   }
 
   goToDetail() {
-    this.router.navigate(['/product', this.product.id]);
-  }
+  if (!this.product || !this.product.id) return;
+  this.router.navigate(['/product', this.product.id]);
+}
+
 }
