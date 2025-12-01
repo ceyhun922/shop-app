@@ -29,6 +29,7 @@ import { ProductFilterSidebarComponent } from "./shared/product-filter-sidebar/p
 import { ProductFilterSortBarComponent } from "./shared/product-filter-sort-bar/product-filter-sort-bar.component";
 import { ProductTopCategoriesComponent } from "./shared/product-top-categories/product-top-categories.component";
 import { HomeBannerComponent } from './pages/home/home-banner/home-banner.component';
+import { AuthComponent } from './layout/auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { HomeBannerComponent } from './pages/home/home-banner/home-banner.compon
     ProductFilterSidebarComponent,
     ProductFilterSortBarComponent,
     ProductTopCategoriesComponent,
-    HomeBannerComponent
+    HomeBannerComponent,
+    AuthComponent,
   ],
 
   imports: [

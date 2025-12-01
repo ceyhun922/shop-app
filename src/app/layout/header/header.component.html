@@ -9,12 +9,17 @@
     <div class="search-wrapper">
       <app-search></app-search>
     </div>
-     <nav class="nav-links">
-      <!-- Menü itemləri -->
-      <a routerLink="/">Giriş Et</a>
-      <a routerLink="/products">Sevimlilər</a>
-      <a routerLink="/contact">Səbətim</a>
-    </nav>
-  </div>
 
+    <nav class="nav-links" routerLink="/auth">
+      <button class="login-btn">
+        <i class="icon">👤</i>
+        Giriş Yap
+      </button>
+
+      <a routerLink="/favorites">Sevimlilər</a>
+      <a routerLink="/cart">Səbətim</a>
+    </nav>
+
+
+  </div>
 </header>

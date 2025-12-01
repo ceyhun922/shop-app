@@ -1,0 +1,87 @@
+<div class="auth-wrapper">
+
+  <!-- TABS -->
+  <div class="tabs">
+    <div class="tab" 
+         [class.active]="activeTab === 'login'"
+         (click)="setTab('login')">
+      Daxil ol
+    </div>
+
+    <div class="tab" 
+         [class.active]="activeTab === 'register'"
+         (click)="setTab('register')">
+      Abunə ol
+    </div>
+  </div>
+
+
+  <!-- ================= LOGIN FORM ================= -->
+  <form *ngIf="activeTab === 'login'" class="form">
+
+    <label>E-poçt</label>
+    <input type="email" placeholder="E-poçt" />
+
+    <label>Parol</label>
+    <div class="password-wrap">
+      <input type="password" placeholder="Parol" />
+      <span class="eye">👁</span>
+    </div>
+
+    <a class="forgot">Parolumu unutdum</a>
+
+    <button class="primary-btn">DAXİL OL</button>
+
+    <div class="social">
+      <button class="social-btn fb">
+        <i>f</i> Facebook ilə qoşul
+      </button>
+
+      <button class="social-btn google">
+        <i>G</i> Google ilə qoşul
+      </button>
+    </div>
+
+    <p class="info">
+      Üzvlük olmadan verilən sifarişlərlə bağlı bu kanaldan dəstək verilmir...
+    </p>
+  </form>
+
+
+
+
+  <!-- ================= REGISTER FORM ================= -->
+  <form *ngIf="activeTab === 'register'" class="form">
+
+    <label>E-poçt</label>
+    <input type="email" placeholder="E-poçt" />
+
+    <label>Parol</label>
+    <div class="password-wrap">
+      <input type="password" placeholder="Parol" />
+      <span class="eye">👁</span>
+    </div>
+
+    <label>Cinsiyyət</label>
+    <div class="gender">
+      <button [class.active]="gender === 'f'" (click)="setGender('f')" type="button">Qadın</button>
+      <button [class.active]="gender === 'm'" (click)="setGender('m')" type="button">Kişi</button>
+    </div>
+    <div class="checks">
+      <label><input type="checkbox" /> Üzvlük müqaviləsini qəbul edirəm</label>
+    </div>
+
+    <button class="primary-btn">ABUNƏ OL</button>
+
+    <div class="social">
+      <button class="social-btn fb">
+        <i>f</i> Facebook ilə abunə ol
+      </button>
+
+      <button class="social-btn google">
+        <i>G</i> Google ilə abunə ol
+      </button>
+    </div>
+  </form>
+
+</div>
