@@ -6,14 +6,31 @@ import { Component } from '@angular/core';
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent {
-   activeTab: 'login' | 'register' = 'login';
-  gender: 'f' | 'm' | null = null;
+
+  mode: 'login' | 'register' | 'phone' | 'reset' = 'login';
+
+  email: string = "";
+  password: string = "";
+  phone: string = "";
+  gsmPrefix: string = "+90";
 
   setTab(tab: 'login' | 'register') {
-    this.activeTab = tab;
+    this.mode = tab;
   }
 
-  setGender(g: 'f' | 'm') {
-    this.gender = g;
+  goReset() {
+    this.mode = 'reset';
+  }
+
+  backToLogin() {
+    this.mode = 'login';
+  }
+
+  goPhoneLogin() {
+    this.mode = 'phone';
+  }
+
+  goEmailLogin() {
+    this.mode = 'login';
   }
 }

@@ -1,87 +1,98 @@
 <div class="auth-wrapper">
 
-  <!-- TABS -->
-  <div class="tabs">
-    <div class="tab" 
-         [class.active]="activeTab === 'login'"
-         (click)="setTab('login')">
-      Daxil ol
-    </div>
+  <!-- RESET PASSWORD -->
+  <div *ngIf="mode === 'reset'" class="reset-page">
 
-    <div class="tab" 
-         [class.active]="activeTab === 'register'"
-         (click)="setTab('register')">
-      Abunə ol
-    </div>
+    <button class="back-btn" (click)="backToLogin()">←</button>
+
+    <h2>Şifrə yeniləmə</h2>
+    <p class="desc">
+      Şifrə yeniləmə bağlantısını göndərə bilməyimiz üçün
+      e-poçt adresinizə ehtiyacımız var.
+    </p>
+
+    <input type="email" placeholder="E-poçt adresi" [(ngModel)]="email" />
+
+    <button class="action" [disabled]="!email">Devam et</button>
   </div>
 
 
-  <!-- ================= LOGIN FORM ================= -->
-  <form *ngIf="activeTab === 'login'" class="form">
+  <!-- MAIN AUTH -->
+  <div *ngIf="mode !== 'reset'" class="auth-box">
 
-    <label>E-poçt</label>
-    <input type="email" placeholder="E-poçt" />
+    <!-- TABS -->
+    <div class="tabs">
+      <div class="tab" [class.active]="mode === 'login'" (click)="setTab('login')">
+        Giriş yap
+      </div>
 
-    <label>Parol</label>
-    <div class="password-wrap">
-      <input type="password" placeholder="Parol" />
-      <span class="eye">👁</span>
+      <div class="tab" [class.active]="mode === 'register'" (click)="setTab('register')">
+        Üye ol
+      </div>
     </div>
 
-    <a class="forgot">Parolumu unutdum</a>
-
-    <button class="primary-btn">DAXİL OL</button>
-
-    <div class="social">
-      <button class="social-btn fb">
-        <i>f</i> Facebook ilə qoşul
-      </button>
-
-      <button class="social-btn google">
-        <i>G</i> Google ilə qoşul
-      </button>
+    <div class="tab-border">
+      <div class="active-line" [style.left]="mode === 'login' ? '0%' : '50%'"></div>
     </div>
 
-    <p class="info">
-      Üzvlük olmadan verilən sifarişlərlə bağlı bu kanaldan dəstək verilmir...
-    </p>
-  </form>
+    <!-- LOGIN -->
+    <div *ngIf="mode === 'login'" class="form">
+      <input type="email" placeholder="E-posta adresi" [(ngModel)]="email" />
 
+      <div class="password-wrap">
+        <input type="password" placeholder="Şifre" [(ngModel)]="password" />
+        <span class="eye">👁</span>
+      </div>
 
+      <a class="forgot" (click)="goReset()">Şifrəmi unutdum</a>
 
+      <button class="action" [disabled]="!email || !password">Giriş yap</button>
 
-  <!-- ================= REGISTER FORM ================= -->
-  <form *ngIf="activeTab === 'register'" class="form">
-
-    <label>E-poçt</label>
-    <input type="email" placeholder="E-poçt" />
-
-    <label>Parol</label>
-    <div class="password-wrap">
-      <input type="password" placeholder="Parol" />
-      <span class="eye">👁</span>
+      <button class="phone-btn" (click)="goPhoneLogin()">📞 Telefon ilə giriş yap</button>
     </div>
 
-    <label>Cinsiyyət</label>
-    <div class="gender">
-      <button [class.active]="gender === 'f'" (click)="setGender('f')" type="button">Qadın</button>
-      <button [class.active]="gender === 'm'" (click)="setGender('m')" type="button">Kişi</button>
+
+    <!-- PHONE LOGIN -->
+    <div *ngIf="mode === 'phone'" class="form">
+      <div class="phone-row">
+        <select [(ngModel)]="gsmPrefix">
+          <option value="+90">🇹🇷 +90</option>
+          <option value="+994">🇦🇿 +994</option>
+        </select>
+
+        <input type="tel" placeholder="Telefon" [(ngModel)]="phone" />
+      </div>
+
+      <button class="action" [disabled]="!phone">Giriş yap</button>
+
+      <button class="phone-btn" (click)="goEmailLogin()">✉️ E-posta ilə giriş yap</button>
     </div>
-    <div class="checks">
-      <label><input type="checkbox" /> Üzvlük müqaviləsini qəbul edirəm</label>
+
+
+    <!-- REGISTER -->
+    <div *ngIf="mode === 'register'" class="form">
+      <input type="text" placeholder="E-poçt adresi və ya GSM nömrəsi" [(ngModel)]="email" />
+
+      <button class="action" [disabled]="!email">Devam et</button>
+
+      <p class="kv-text">
+        Devam et düyməsinə basaraq
+        <strong>Üyelik Sözleşmesi</strong> və
+        <strong>Gizlilik Politikası</strong>nı qəbul etmiş olursunuz.
+      </p>
     </div>
 
-    <button class="primary-btn">ABUNƏ OL</button>
 
-    <div class="social">
-      <button class="social-btn fb">
-        <i>f</i> Facebook ilə abunə ol
-      </button>
+    <!-- SOCIAL LOGIN -->
+    <div class="social-box">
+      <p class="social-title">Sosial hesab ilə giriş yap</p>
 
-      <button class="social-btn google">
-        <i>G</i> Google ilə abunə ol
-      </button>
+      <div class="social-row">
+        <button class="social"><img src="assets/apple.svg" /></button>
+        <button class="social"><img src="assets/google.svg" /></button>
+        <button class="social"><img src="assets/facebook.svg" /></button>
+      </div>
     </div>
-  </form>
 
+  </div>
 </div>
